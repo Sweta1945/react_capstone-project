@@ -1,0 +1,97 @@
+
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+body{
+    background-color: black;
+}
+.formContainer{
+    position: relative;
+}
+
+
+.formContainer>img:nth-child(1){
+    position: absolute;
+    left: 300px;
+   
+    z-index: 5;
+    top: 54px;
+}
+
+h4{
+    
+position: absolute;
+left: 300px;
+
+top:90px;
+font-family: DM Sans;
+font-size: 25px;
+font-weight: 400;
+line-height: 35px;
+letter-spacing: 0em;
+text-align: left;
+color: white;
+width: 100vw;
+
+}
+.form{
+    position: absolute;
+    top: 200px;
+    left: 250px;
+}
+
+.name, .username, .email, .mobile{
+   
+    width: 400px;
+height:40px;
+
+border-radius: 3.82px;
+padding-left: 10px;
+background-color: #292929;
+
+}
+.username, .email, .mobile, .checkbox{
+margin-top: 20px;
+}
+label> span{
+    color:#7C7C7C;
+margin-left:  12px;
+    
+}
+
+.submit{
+    margin-top: 30px;
+    width: 430px;
+height: 55px;
+top: 761px;
+left: 1047px;
+border-radius: 28px;
+background-color: #72DB73;
+color:white;
+
+}
+
+.para{
+    font-family: Roboto;
+    color: #7C7C7C;
+    font-size: small;
+   text-align: left;
+   margin-left: 10px;
+}
+
+.green{
+    color: #72DB73;
+}
+
+.error {
+    margin-top:2px;
+    color: red;
+    font-size: 14px;
+  }
+  input{
+    color: rgb(163, 154, 154);
+    font-family: Roboto;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }

@@ -1,0 +1,47 @@
+body {
+  overflow: hidden;
+}
+
+.registerPage {
+  display: flex;
+}
+
+.leftDiv {
+  position: relative;
+  width: 44%;
+}
+
+.leftDiv > img:nth-child(1) {
+  height: 100vh;
+  object-fit: fill;
+  width: 100%;
+  z-index: 0;
+}
+
+.leftDiv > img:nth-child(2) {
+  position: absolute;
+  top: 74%;
+  left: 2%;
+  z-index: 2;
+}
+
+/* Apply styles for screens with a maximum width of 768px */
+@media (max-width: 1430px) {
+  .leftDiv > img:nth-child(1) {
+    width: 120%; /* Adjust the width as needed */
+  }
+
+  .leftDiv > img:nth-child(2) {
+    top: 80%;
+    left: 50%;
+    transform: translate(-40%, -10%);
+    max-width: 90%; /* Adjust the maximum width as needed */
+  }
+  .rightDiv {
+    transform: translate(-10%, -10%);
+
+    width: 56%; /* Adjust the width as needed */
+  }
+  
+}
+
