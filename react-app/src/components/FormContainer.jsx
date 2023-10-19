@@ -1,5 +1,6 @@
 import "./FormContainer.css";
 import superApp from "../assets/superApp.png";
+import { Link } from 'react-router-dom';
 
 import React, { useState } from "react";
 
@@ -15,110 +16,97 @@ function FormContainer() {
   const [mobileErrorMsg, setMobileErrorMsg] = useState("");
   const [isCheckedErrorMsg, setIsCheckedErrorMsg] = useState("");
 
-
   const handleNameValue = (e) => {
     const input = e.target.value;
-   
-    if ((/^[A-Za-z0-9]+$/.test(input))) {
-        setName(input);
-     
-    } 
-    else{
-        setName(input);
-        setNameErrorMsg("Enter Valid Name!")
+
+    if (/^[A-Za-z0-9]+$/.test(input)) {
+      setName(input);
+    } else {
+      setName(input);
+      setNameErrorMsg("Enter Valid Name!");
     }
-    if(!input)
-    {
-        setNameErrorMsg("Field is required!")
+    if (!input) {
+      setNameErrorMsg("Field is required!");
+    } else {
+      setNameErrorMsg("");
     }
-    else{
-        setNameErrorMsg("");
-    }
-    
-// else{
-//     setErrorMsg("Please use alphabets and numbers only!")
-// }
+
+    // else{
+    //     setErrorMsg("Please use alphabets and numbers only!")
+    // }
     //only want to take alphabets and numbers in input no other characters
   };
-  
 
-  
   const handleUsernameValue = (e) => {
     const input = e.target.value;
-    
+
     setUsername(e.target.value);
-    if(!input){
-        setUserNameErrorMsg("Field is required!")
-    }
-    else{
-        setUserNameErrorMsg("");
+    if (!input) {
+      setUserNameErrorMsg("Field is required!");
+    } else {
+      setUserNameErrorMsg("");
     }
   };
   const handleEmailValue = (e) => {
     const email = e.target.value;
-  
-    
+
     // Regular expression for a basic email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
     if (emailPattern.test(email)) {
       setEmail(email);
-      setEmailErrorMsg('');
-    } else  {
-        setEmail(email)
-      setEmailErrorMsg('Please enter a valid email address only!');
+      setEmailErrorMsg("");
+    } else {
+      setEmail(email);
+      setEmailErrorMsg("Please enter a valid email address only!");
     }
-    if(!email)
-    {
-        setEmailErrorMsg("Field is reqired!")
+    if (!email) {
+      setEmailErrorMsg("Field is reqired!");
     }
   };
-  
+
   const handleMobileValue = (e) => {
-    const input=e.target.value;
-    
-    if(input.length<10){
-        setMobile(input);
-        setMobileErrorMsg("Mobile number is too short!");
-        
+    const input = e.target.value;
+
+    if (input.length < 10) {
+      setMobile(input);
+      setMobileErrorMsg("Mobile number is too short!");
+    } else if (input.length > 10) {
+      setMobile(input);
+      setMobileErrorMsg("Mobile number is too long!");
+    } else {
+      setMobile(input);
+      setMobileErrorMsg("");
     }
-    else if(input.length>10)
-    {
-        setMobile(input);
-       setMobileErrorMsg("Mobile number is too long!")
-        
-    }
-    else{
-        setMobile(input);
-        setMobileErrorMsg("")
-        
-    }
-    if(!input)
-    {
-        
-        setMobileErrorMsg("Field is required!")
+    if (!input) {
+      setMobileErrorMsg("Field is required!");
     }
   };
   const handleIsCheckedValue = (e) => {
     const isChecked = e.target.checked;
-    
+
     if (isChecked) {
-        setIsCheckedErrorMsg('');
+      setIsCheckedErrorMsg("");
     } else {
-        setIsCheckedErrorMsg('Check this box if you want to proceed!');
+      setIsCheckedErrorMsg("Check this box if you want to proceed!");
     }
   };
-  
 
-  //in handleSubmit am first checking if any of my error message is not empty(ie, if any of error msgs occurs) than am returning not submitting 
+  //in handleSubmit am first checking if any of my error message is not empty(ie, if any of error msgs occurs) than am returning not submitting
   //else i am submitting in local storage as key value pair and than popping up the alert msg
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    if (nameErrorMsg !== "" || usernameErrorMsg !== "" || emailErrorMsg !== "" || mobileErrorMsg !== "" || isCheckedErrorMsg !== "") {
+
+    if (
+      nameErrorMsg !== "" ||
+      usernameErrorMsg !== "" ||
+      emailErrorMsg !== "" ||
+      mobileErrorMsg !== "" ||
+      isCheckedErrorMsg !== ""
+    ) {
       return;
     }
-  
+
     //  want to store the form data as an object
     const formData = {
       name: nameValue,
@@ -127,15 +115,13 @@ function FormContainer() {
       mobile: mobileValue,
       isChecked: isChecked,
     };
-  
+
     // Converting the object to a JSON string and store it in local storage
-    localStorage.setItem('formData', JSON.stringify(formData));
-  
+    localStorage.setItem("formData", JSON.stringify(formData));
+    
     window.alert("Form submitted successfully!");
   };
   
-
-
   return (
     <div className="formContainer">
       <img src={superApp} alt="super app heading" />
@@ -158,7 +144,7 @@ function FormContainer() {
           value={usernameValue}
           onChange={handleUsernameValue}
         />
-         {usernameErrorMsg && <div className="error">{usernameErrorMsg}</div>}
+        {usernameErrorMsg && <div className="error">{usernameErrorMsg}</div>}
         <input
           className="email"
           type="text"
@@ -174,7 +160,7 @@ function FormContainer() {
           value={mobileValue}
           onChange={handleMobileValue}
         />
-         {mobileErrorMsg && <div className="error">{mobileErrorMsg}</div>}
+        {mobileErrorMsg && <div className="error">{mobileErrorMsg}</div>}
         <label>
           <input
             className="checkbox"
@@ -184,19 +170,26 @@ function FormContainer() {
           />
           <span>Share my registration data with Superapp</span>
         </label>
-        {isCheckedErrorMsg}&& <div className="error">{isCheckedErrorMsg}</div>}
+        {isCheckedErrorMsg && <div className="error">{isCheckedErrorMsg}</div>}
+        <Link to="/CategoryPage" style={{textDecoration: 'none'}}>
         <button type="submit" className="submit">
           SIGN UP
         </button>
-
+        </Link>
         <p className="para">
           By clicking on Sign up. you agree to Superapp{" "}
-          <span className="green">Terms and <br />Conditions of Use</span>
+          <span className="green">
+            Terms and <br />
+            Conditions of Use
+          </span>
         </p>
         <p className="para">
           To learn more about how Superapp collects, uses, shares and <br />
           protects your personal data please head Superapp
-          <span className="green">Privacy<br /> Policy </span>
+          <span className="green">
+            Privacy
+            <br /> Policy{" "}
+          </span>
         </p>
       </form>
     </div>
