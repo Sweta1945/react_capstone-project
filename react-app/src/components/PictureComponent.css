@@ -1,0 +1,35 @@
+.imgDiv{
+  position: relative;
+
+height: 35vh;
+width: 250px;
+border: 1px solid black;
+border-radius: 30px;
+
+}
+
+.selected {
+  border: 5px solid green;
+}
+.img{
+   
+    position: absolute;
+    top: 51%;
+    transform: translate(8%, -8%);
+    
+}
+.imgHeading{
+   
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 700;
+    
+    letter-spacing: 2px;
+    text-align: left;
+    color: white;
+    padding-left: 20px;
+    
+ 
+    
+    
+}

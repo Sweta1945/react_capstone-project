@@ -8,12 +8,12 @@ import FormContainer from "./FormContainer"
 function RegisterPage() {
   return (
     <div className="registerPage">
-       <div className="leftDiv">
+       <div className="leftDIV">
         <img src={image} alt="front left image"/>
         <img src={imageText} alt="front left image text"/>
         </div> 
 
-       <div className="rightDiv">
+       <div className="rightDIV">
        <FormContainer/>
        </div>
     

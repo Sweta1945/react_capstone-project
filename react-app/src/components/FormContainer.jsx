@@ -1,10 +1,12 @@
 import "./FormContainer.css";
 import superApp from "../assets/superApp.png";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import React, { useState } from "react";
 
 function FormContainer() {
+  const navigateTo = useNavigate();
   const [nameValue, setName] = useState("");
   const [usernameValue, setUsername] = useState("");
   const [emailValue, setEmail] = useState("");
@@ -87,6 +89,7 @@ function FormContainer() {
 
     if (isChecked) {
       setIsCheckedErrorMsg("");
+      setIsChecked(isChecked);
     } else {
       setIsCheckedErrorMsg("Check this box if you want to proceed!");
     }
@@ -107,6 +110,38 @@ function FormContainer() {
       return;
     }
 
+    let hasError=false;
+    if (nameValue == "") {
+      setNameErrorMsg("Field is required!");
+      hasError=true
+      
+    } 
+    if (usernameValue == "") {
+      setUserNameErrorMsg("Field is required!");
+      hasError=true
+      
+    } 
+    if (emailValue == "") {
+      setEmailErrorMsg("Field is required!");
+      hasError=true
+    
+    } 
+    if (mobileValue == "") {
+      setMobileErrorMsg("Field is required!");
+      hasError=true
+      
+    } 
+      if (!isChecked) {
+        setIsCheckedErrorMsg("Check this box if you want to proceed!");
+        hasError=true
+        
+      
+    }
+
+    if(hasError==true)
+    {
+      return;
+    }
     //  want to store the form data as an object
     const formData = {
       name: nameValue,
@@ -118,10 +153,12 @@ function FormContainer() {
 
     // Converting the object to a JSON string and store it in local storage
     localStorage.setItem("formData", JSON.stringify(formData));
-    
+
     window.alert("Form submitted successfully!");
+
+    navigateTo("/CategoryPage");
   };
-  
+
   return (
     <div className="formContainer">
       <img src={superApp} alt="super app heading" />
@@ -143,6 +180,7 @@ function FormContainer() {
           placeholder="UserName"
           value={usernameValue}
           onChange={handleUsernameValue}
+          required
         />
         {usernameErrorMsg && <div className="error">{usernameErrorMsg}</div>}
         <input
@@ -151,6 +189,7 @@ function FormContainer() {
           placeholder="Email"
           value={emailValue}
           onChange={handleEmailValue}
+          required
         />
         {emailErrorMsg && <div className="error">{emailErrorMsg}</div>}
         <input
@@ -159,6 +198,7 @@ function FormContainer() {
           placeholder="Mobile"
           value={mobileValue}
           onChange={handleMobileValue}
+          required
         />
         {mobileErrorMsg && <div className="error">{mobileErrorMsg}</div>}
         <label>
@@ -167,15 +207,18 @@ function FormContainer() {
             type="checkbox"
             value={isChecked}
             onChange={handleIsCheckedValue}
+            required
           />
           <span>Share my registration data with Superapp</span>
         </label>
         {isCheckedErrorMsg && <div className="error">{isCheckedErrorMsg}</div>}
-        <Link to="/CategoryPage" style={{textDecoration: 'none'}}>
-        <button type="submit" className="submit">
+
+        {/* checking if we could submit or not */}
+
+        <button type="submit" className="submit" onClick={handleSubmit}>
           SIGN UP
         </button>
-        </Link>
+
         <p className="para">
           By clicking on Sign up. you agree to Superapp{" "}
           <span className="green">
