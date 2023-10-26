@@ -152,9 +152,10 @@ function FormContainer() {
     };
 
     // Converting the object to a JSON string and store it in local storage
-    localStorage.setItem("formData", JSON.stringify(formData));
+    
 
     window.alert("Form submitted successfully!");
+    localStorage.setItem("formData", JSON.stringify(formData));
 
     navigateTo("/CategoryPage");
   };

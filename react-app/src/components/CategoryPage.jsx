@@ -42,6 +42,7 @@ function CategoryPage() {
       "selectedCategories",
       JSON.stringify(selectedCategories)
     );
+    
     nextButtonNavigate("/HomePage");
   };
 
